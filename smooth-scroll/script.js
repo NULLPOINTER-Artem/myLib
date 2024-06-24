@@ -1,71 +1,188 @@
-var html = document.documentElement;
-var body = document.body;
+// var html = document.documentElement;
+// var body = document.body;
 
-var scroller = {
-  target: document.querySelector("#scroll-container"),
-  ease: 0.03, // <= scroll speed
-  endY: 0,
-  y: 0,
-  resizeRequest: 1,
-  scrollRequest: 0,
-};
+// var scroller = {
+//   target: document.querySelector("#scroll-container"),
+//   ease: 0.03, // <= scroll speed
+//   endY: 0,
+//   y: 0,
+//   resizeRequest: 1,
+//   scrollRequest: 0,
+// };
 
-var requestId = null;
+// var requestId = null;
 
-TweenLite.set(scroller.target, {
-  rotation: 0.01,
-  force3D: true
+// TweenLite.set(scroller.target, {
+//   rotation: 0.01,
+//   force3D: true
+// });
+
+// window.addEventListener("load", onLoad);
+
+// function onLoad() {
+//   updateScroller();
+//   window.focus();
+//   window.addEventListener("resize", onResize);
+//   document.addEventListener("scroll", onScroll);
+// }
+
+// function updateScroller() {
+
+//   var resized = scroller.resizeRequest > 0;
+
+//   if (resized) {
+//     var height = scroller.target.clientHeight;
+//     body.style.height = height + "px";
+//     scroller.resizeRequest = 0;
+//   }
+
+//   var scrollY = window.pageYOffset || html.scrollTop || body.scrollTop || 0;
+
+//   scroller.endY = scrollY;
+//   scroller.y += (scrollY - scroller.y) * scroller.ease;
+
+//   if (Math.abs(scrollY - scroller.y) < 0.05 || resized) {
+//     scroller.y = scrollY;
+//     scroller.scrollRequest = 0;
+//   }
+
+//   TweenLite.set(scroller.target, {
+//     y: -scroller.y
+//   });
+
+//   requestId = scroller.scrollRequest > 0 ? requestAnimationFrame(updateScroller) : null;
+// }
+
+// function onScroll() {
+//   scroller.scrollRequest++;
+//   if (!requestId) {
+//     requestId = requestAnimationFrame(updateScroller);
+//   }
+// }
+
+// function onResize() {
+//   scroller.resizeRequest++;
+//   if (!requestId) {
+//     requestId = requestAnimationFrame(updateScroller);
+//   }
+// }
+
+// let scrollY = 0;
+// const speedY = 0.5
+
+window.addEventListener("load", () => {
+  const images = [].slice.call(document.querySelectorAll('.img-container'))
+
+  images.forEach((img) => {
+    img.addEventListener('mouseleave', () => { img.style.background = '' })
+    img.addEventListener('mouseenter', () => { img.style.background = 'red' })
+  })
+
+  // const velocity = 40
+  // const container = document.getElementById('main-content')
+
+  // const handleScroll = function (e) {
+    // console.log('-------------- handleScroll');
+    // console.log('event');
+    // console.dir(e);
+    // e.preventDefault()
+    // container.scrollTo(0, 0);  // required when scroll bar is drgged
+  // };
+
+  // container.addEventListener('scroll', handleScroll, false);
+
+  // function callback(pixel) {
+  //   setTimeout(function () {
+  //     console.log(`pixel ${pixel}`);
+  //     container.scrollTop += pixel
+  //   }, 100)
+  // }
+  // for (let pixel = 1; pixel <= 100; pixel++) {
+
+  // }
+  // setInterval(() => {
+  //   container.scrollTop += 20 
+  //   console.log(`container.scrollTop ${container.scrollTop}`);
+  // }, 100)
+  // container.scrollTop += 100
+
+  // const handleEvent = function (e) {
+    // console.log('handleEvent');
+    // console.dir(e);
+  //   e.preventDefault();
+  //   e.stopPropagation();
+    // requestAnimationFrame(() => {
+    //   scrollY += speedY * (e.deltaY || 0)
+    //   console.log(`scrollY ${scrollY}`);
+    //   if (scrollY < 0) {
+    //     scrollY = 0;
+    //   } else {
+    //     const limitY = container.scrollHeight;
+    //     if (scrollY > limitY) {
+    //       scrollY = limitY;
+    //     }
+    //   }
+    //   container.scrollTop = scrollY
+    // })
+
+    // const velocity = ((container.scrollHeight / Date.now()) * 1000) || 0
+
+    // console.log('velocity', velocity);
+
+    // console.log(`e.deltaY ${e.deltaY}`);
+
+    // scrollY += speedY * (e.deltaY || 0)
+    // console.log(`scrollY ${scrollY}`);
+    // if (scrollY < 0) {
+    //   scrollY = 0;
+    // } else {
+    //   const limitY = container.scrollHeight;
+    //   if (scrollY > limitY) {
+    //     scrollY = limitY;
+    //   }
+    // }
+    // window.scrollY = scrollY;
+    // setTimeout(() => {
+    //   container.scrollTop = scrollY
+    // }, 10)
+    // for (let pixel = container.scrollTop; pixel < scrollY; pixel++) {
+    //   callback(pixel)
+    // }
+    // container.offsetTop = screenY
+    // container.clientTop = screenY
+    // container.scroll(0, screenY)
+    // window.scroll(0, scrollY)
+
+    // console.log('container.scrollTop');
+    // console.dir(container.scrollTop);
+    // console.dir(container);
+    // console.dir(window);
+
+    // return false;
+    // e.preventDefault();      // disables scrolling by mouse wheel and touch move
+    // window.scrollTo({
+    //   top: velocity,
+    //   behavior: 'smooth'
+    // })
+    // console.log('e');
+    // console.dir(e);
+    // console.log('window');
+    // console.dir(window);
+    // document.body.offsetTop += velocity + 10000
+  // };
+
+  // container.addEventListener('scroll', handleEvent, {
+  //   passive: false
+  // });
+  // container.addEventListener('mousewheel', handleEvent, {
+  //   passive: false
+  // });
+  // container.addEventListener('touchmove', handleEvent, {
+  //   passive: false
+  // });
 });
 
-window.addEventListener("load", onLoad);
 
-function onLoad() {
-  updateScroller();
-  window.focus();
-  window.addEventListener("resize", onResize);
-  document.addEventListener("scroll", onScroll);
-}
-
-function updateScroller() {
-
-  var resized = scroller.resizeRequest > 0;
-
-  if (resized) {
-    var height = scroller.target.clientHeight;
-    body.style.height = height + "px";
-    scroller.resizeRequest = 0;
-  }
-
-  var scrollY = window.pageYOffset || html.scrollTop || body.scrollTop || 0;
-
-  scroller.endY = scrollY;
-  scroller.y += (scrollY - scroller.y) * scroller.ease;
-
-  if (Math.abs(scrollY - scroller.y) < 0.05 || resized) {
-    scroller.y = scrollY;
-    scroller.scrollRequest = 0;
-  }
-
-  TweenLite.set(scroller.target, {
-    y: -scroller.y
-  });
-
-  requestId = scroller.scrollRequest > 0 ? requestAnimationFrame(updateScroller) : null;
-}
-
-function onScroll() {
-  scroller.scrollRequest++;
-  if (!requestId) {
-    requestId = requestAnimationFrame(updateScroller);
-  }
-}
-
-function onResize() {
-  scroller.resizeRequest++;
-  if (!requestId) {
-    requestId = requestAnimationFrame(updateScroller);
-  }
-}
 
 // gsap luce
 /*
@@ -295,222 +412,222 @@ export default defineNuxtPlugin(() => {
           }
  */
 
-          // FINAL VERSION ON NUXT WITH GSAP
-          /**
-           * 
-           * html {
-              overscroll-behavior: none;
-              scroll-behavior: smooth;
-            }
+// FINAL VERSION ON NUXT WITH GSAP
+/**
+ * 
+ * html {
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+  }
 
-            body {
-              overscroll-behavior: none;
-              scroll-behavior: auto;
-              overflow-x: hidden;
-              overflow-y: scroll;
+  body {
+    overscroll-behavior: none;
+    scroll-behavior: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
 
-              &.stop-scroll {
-                overflow: hidden;
-              }
-            }
+    &.stop-scroll {
+      overflow: hidden;
+    }
+  }
 
-            .viewport {
-              overflow: hidden;
-              position: fixed;
-              height: 100%;
-              width: 100%;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-            }
+  .viewport {
+    overflow: hidden;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 
-            .scroll-container {
-              backface-visibility: hidden;
-              transform-style: preserve-3d;
-            }
+  .scroll-container {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
 
-           * 
-           * <template>
-              <div id="luce-sposa">
-                <canvas class="grain-bg"></canvas>
+ * 
+ * <template>
+    <div id="luce-sposa">
+      <canvas class="grain-bg"></canvas>
 
-                <div class="viewport">
-                  <div id="scroll-container" class="scroll-container">
-                    <slot />
-                  </div>
-                </div>
-              </div>
-            </template>
+      <div class="viewport">
+        <div id="scroll-container" class="scroll-container">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </template>
 
-            <script setup lang="ts"></script>
+  <script setup lang="ts"></script>
 
-            <style lang="scss"></style>
+  <style lang="scss"></style>
 
-           * import { gsap } from "gsap";
-              import { ScrollTrigger } from "gsap/ScrollTrigger";
-              import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+ * import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-              function smoothScroll(content: Element, viewport: Element, smoothness: number) {
-                content = gsap.utils.toArray(content)[0];
-                smoothness = smoothness || 1;
+    function smoothScroll(content: Element, viewport: Element, smoothness: number) {
+      content = gsap.utils.toArray(content)[0];
+      smoothness = smoothness || 1;
 
-                gsap.set(viewport || content.parentNode, {
-                  overflow: "hidden",
-                  position: "fixed",
-                  height: "100%",
-                  width: "100%",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                });
-                gsap.set(content, {
-                  overflow: "visible",
-                  width: "100%",
-                  transformStyle: "preserve-3d",
-                  backfaceVisibility: "hidden",
-                });
+      gsap.set(viewport || content.parentNode, {
+        overflow: "hidden",
+        position: "fixed",
+        height: "100%",
+        width: "100%",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      });
+      gsap.set(content, {
+        overflow: "visible",
+        width: "100%",
+        transformStyle: "preserve-3d",
+        backfaceVisibility: "hidden",
+      });
 
-                const getProp = gsap.getProperty(content);
-                const setProp = gsap.quickSetter(content, "y", "px");
-                const setScroll = ScrollTrigger.getScrollFunc(window);
-                const removeScroll = () => (content.style.overflow = "visible");
-                const killScrub = (trigger: any) => {
-                  let scrub = trigger.getTween();
-                  scrub && scrub.pause();
-                  trigger.animation.progress(trigger.progress);
-                };
-                let height: any = null;
-                let isProxyScrolling: any = null;
-                let pause: boolean = false;
-                let propertyY: any = null;
+      const getProp = gsap.getProperty(content);
+      const setProp = gsap.quickSetter(content, "y", "px");
+      const setScroll = ScrollTrigger.getScrollFunc(window);
+      const removeScroll = () => (content.style.overflow = "visible");
+      const killScrub = (trigger: any) => {
+        let scrub = trigger.getTween();
+        scrub && scrub.pause();
+        trigger.animation.progress(trigger.progress);
+      };
+      let height: any = null;
+      let isProxyScrolling: any = null;
+      let pause: boolean = false;
+      let propertyY: any = null;
 
-                // set height on body
-                function refreshHeight() {
-                  height = content.clientHeight;
-                  content.style.overflow = "visible";
-                  document.body.style.height = height + "px";
-                  return height - document.documentElement.clientHeight;
+      // set height on body
+      function refreshHeight() {
+        height = content.clientHeight;
+        content.style.overflow = "visible";
+        document.body.style.height = height + "px";
+        return height - document.documentElement.clientHeight;
+      }
+
+      ScrollTrigger.addEventListener("refresh", () => {
+        removeScroll();
+        requestAnimationFrame(removeScroll);
+      });
+      ScrollTrigger.defaults({ scroller: content });
+
+      ScrollTrigger.scrollerProxy(content, {
+        scrollTop(value) {
+          if (value) {
+            isProxyScrolling = true;
+            setProp(-value);
+            setScroll(value);
+            return;
+          }
+
+          return -getProp("y");
+        },
+        scrollHeight: () => {
+          return document.body.scrollHeight;
+        },
+        getBoundingClientRect() {
+          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        },
+      });
+
+      const paused = (val: boolean) => {
+        pause = val;
+        propertyY = -getProp("y");
+
+        if (val) {
+          document.body.classList.add('stop-scroll');
+        } else {
+          document.body.classList.remove('stop-scroll');
+        }
+      };
+
+      return {
+        scroller: ScrollTrigger.create({
+          animation: gsap.fromTo(
+            content,
+            { y: 0, },
+            {
+              y: () => {
+                return document.documentElement.clientHeight - height;
+              },
+              ease: "none",
+              onUpdate: () => {
+                if (pause) {
+                  setProp(-propertyY);
+                } else {
+                  ScrollTrigger.update();
+                  refreshHeight();
                 }
+              },
+            }
+          ),
+          scroller: window,
+          invalidateOnRefresh: true,
+          start: 0,
+          end: refreshHeight,
+          refreshPriority: -999,
+          scrub: smoothness,
+          onUpdate: (self) => {
+            if (isProxyScrolling) {
+              killScrub(self);
+              isProxyScrolling = false;
+            }
+          },
+          onRefresh: killScrub,
+        }),
+        refreshHeight,
+        paused
+      };
+    }
 
-                ScrollTrigger.addEventListener("refresh", () => {
-                  removeScroll();
-                  requestAnimationFrame(removeScroll);
-                });
-                ScrollTrigger.defaults({ scroller: content });
+    export default defineNuxtPlugin((nuxtApp) => {
+      if (process.client) {
+        gsap.config({
+          force3D: true,
+        });
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+        ScrollTrigger.normalizeScroll({
+          allowNestedScroll: true,
+          lockAxis: false,
+          momentum: (self: any) => Math.min(3, self.velocityY / 1000),
+          type: 'touch,wheel,pointer'
+        });
 
-                ScrollTrigger.scrollerProxy(content, {
-                  scrollTop(value) {
-                    if (value) {
-                      isProxyScrolling = true;
-                      setProp(-value);
-                      setScroll(value);
-                      return;
-                    }
+        setTimeout(() => {
+          const scrollerTarget = document.querySelector("#scroll-container");
+          const viewport = document.querySelector(".viewport");
 
-                    return -getProp("y");
-                  },
-                  scrollHeight: () => {
-                    return document.body.scrollHeight;
-                  },
-                  getBoundingClientRect() {
-                    return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-                  },
-                });
+          if (scrollerTarget && viewport) {
+            const { scroller, refreshHeight, paused } = smoothScroll(scrollerTarget, viewport, 3);
+            const resetScrolling = () => {
+              scroller.disable();
+              scroller.refresh();
 
-                const paused = (val: boolean) => {
-                  pause = val;
-                  propertyY = -getProp("y");
+              setTimeout(() => {
+                scroller.enable();
+              }, 0);
+            };
 
-                  if (val) {
-                    document.body.classList.add('stop-scroll');
-                  } else {
-                    document.body.classList.remove('stop-scroll');
-                  }
-                };
+            // set scroll-position (x: 0, y: 0) on each routing
+            nuxtApp.hook('page:start', resetScrolling);
+            nuxtApp.hook('page:finish', resetScrolling);
 
-                return {
-                  scroller: ScrollTrigger.create({
-                    animation: gsap.fromTo(
-                      content,
-                      { y: 0, },
-                      {
-                        y: () => {
-                          return document.documentElement.clientHeight - height;
-                        },
-                        ease: "none",
-                        onUpdate: () => {
-                          if (pause) {
-                            setProp(-propertyY);
-                          } else {
-                            ScrollTrigger.update();
-                            refreshHeight();
-                          }
-                        },
-                      }
-                    ),
-                    scroller: window,
-                    invalidateOnRefresh: true,
-                    start: 0,
-                    end: refreshHeight,
-                    refreshPriority: -999,
-                    scrub: smoothness,
-                    onUpdate: (self) => {
-                      if (isProxyScrolling) {
-                        killScrub(self);
-                        isProxyScrolling = false;
-                      }
-                    },
-                    onRefresh: killScrub,
-                  }),
-                  refreshHeight,
-                  paused
-                };
-              }
+            // provide into components
+            // e.x. const nuxtApp = useNuxtApp(); && nuxtApp.$smoothScroller
+            nuxtApp.provide('smoothScroller', {
+              scrollTriggerInstance: scroller,
+              refreshHeight,
+              paused
+            });
+          }
+        }, 0);
+      }
+    });
 
-              export default defineNuxtPlugin((nuxtApp) => {
-                if (process.client) {
-                  gsap.config({
-                    force3D: true,
-                  });
-                  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-                  ScrollTrigger.normalizeScroll({
-                    allowNestedScroll: true,
-                    lockAxis: false,
-                    momentum: (self: any) => Math.min(3, self.velocityY / 1000),
-                    type: 'touch,wheel,pointer'
-                  });
-
-                  setTimeout(() => {
-                    const scrollerTarget = document.querySelector("#scroll-container");
-                    const viewport = document.querySelector(".viewport");
-
-                    if (scrollerTarget && viewport) {
-                      const { scroller, refreshHeight, paused } = smoothScroll(scrollerTarget, viewport, 3);
-                      const resetScrolling = () => {
-                        scroller.disable();
-                        scroller.refresh();
-
-                        setTimeout(() => {
-                          scroller.enable();
-                        }, 0);
-                      };
-
-                      // set scroll-position (x: 0, y: 0) on each routing
-                      nuxtApp.hook('page:start', resetScrolling);
-                      nuxtApp.hook('page:finish', resetScrolling);
-
-                      // provide into components
-                      // e.x. const nuxtApp = useNuxtApp(); && nuxtApp.$smoothScroller
-                      nuxtApp.provide('smoothScroller', {
-                        scrollTriggerInstance: scroller,
-                        refreshHeight,
-                        paused
-                      });
-                    }
-                  }, 0);
-                }
-              });
-
-           */
+ */

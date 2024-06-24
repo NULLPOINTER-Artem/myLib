@@ -9,12 +9,25 @@
         *,
         :after,
         :before {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        body {
+        #main-content {
+            scroll-behavior: smooth;
             overflow-x: hidden;
             overflow-y: scroll;
+            max-height: 100vh;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow: hidden;
+            background: #f2f2f2;
         }
 
         .viewport {
@@ -44,6 +57,7 @@
         }
 
         .img-container {
+            width: 100%;
             margin: 0 0 50px;
         }
 
@@ -52,14 +66,114 @@
             width: 100%;
             height: auto;
         }
+
+        @keyframes slide {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .logos {
+            overflow: hidden;
+            padding: 60px 0;
+            background: white;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        /* .logos:before,
+        .logos:after {
+            position: absolute;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            content: "";
+            z-index: 2;
+        } */
+
+        /* .logos:before {
+            left: 0;
+            background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+        }
+
+        .logos:after {
+            right: 0;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+        } */
+
+        /* .logos:hover .logos-slide {
+            animation-play-state: paused;
+        } */
+
+        .logos-slide {
+            display: inline-block;
+            animation: 35s slide infinite linear;
+        }
+
+        .logos-slide img {
+            height: 50px;
+            margin: 0 40px;
+        }
     </style>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
 </head>
 
 <body>
-    <section class="viewport">
+    <main id="main-content">
+        <svg id="svg_circle" width="450" height="400" viewBox='0 0 450 400'>
+            <path class="path" stroke="#94897C" fill="#f2f2f2"
+              stroke-width="1" opacity="1" id="svg_1"
+              d="m34.97813,21.70979l-33.55223,0.47088l-0.0394,
+                 -13.57138l34.2665,-0.47295l-0.0208,-7.14282
+                 l14.50618,14.42226l-14.95643,15.04345l-0.20382,
+                 -8.74944z"> 
+             <animate id="project_anim1" attributeName="fill"
+                from="#f2f2f2" to="#94897C" begin="0s" dur="3s"
+                fill="freeze" repeatCount="indefinite" />
+            </path>
+            <path class="path" d="M542.9,16.6h-4.3l-19.3,44h4.8l5.5-12.1h22.6l5.3,12.1h4.8L542.9,16.6L542.9,16.6z M530.9,44.5l9.7-22l9.7,22
+                    H530.9L530.9,44.5z" stroke="#94897C" fill="#f2f2f2" stroke-width="1" opacity="1">
+                <animate id="project_anim1" attributeName="fill" from="#f2f2f2" to="#94897C" begin="0s" dur="3s"
+                    fill="freeze" repeatCount="indefinite" />
+            </path>
+            <rect x="0" y="0" width="600" height="400" fill="#f2f2f2">
+              <animate attributeType="XML" attributeName="x"
+                from="0" to="600" begin="0s" dur="3s"
+                repeatCount="indefinite" />
+              <animate attributeType="XML" attributeName="width"
+                from="600" to="0" begin="0s" dur="3s"
+                repeatCount="indefinite" />
+            </rect>
+        </svg>
+        <section>
+            <div class="logos">
+                <div class="logos-slide">
+                    <img src="./logos/3m.svg" />
+                    <img src="./logos/barstool-store.svg" />
+                    <img src="./logos/budweiser.svg" />
+                    <img src="./logos/buzzfeed.svg" />
+                    <img src="./logos/forbes.svg" />
+                    <img src="./logos/macys.svg" />
+                    <img src="./logos/menshealth.svg" />
+                    <img src="./logos/mrbeast.svg" />
+                </div>
 
-        <div id="scroll-container" class="scroll-container">
+                <div class="logos-slide">
+                    <img src="./logos/3m.svg" />
+                    <img src="./logos/barstool-store.svg" />
+                    <img src="./logos/budweiser.svg" />
+                    <img src="./logos/buzzfeed.svg" />
+                    <img src="./logos/forbes.svg" />
+                    <img src="./logos/macys.svg" />
+                    <img src="./logos/menshealth.svg" />
+                    <img src="./logos/mrbeast.svg" />
+                </div>
+            </div>
+
             <div class="content">
 
                 <div class="img-container">
@@ -105,9 +219,10 @@
                 <!--  REPEAT  -->
 
             </div>
-        </div>
 
-    </section>
+        </section>
+    </main>
+
 
     <script src="./script.js" defer></script>
 </body>
